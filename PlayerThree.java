@@ -3,8 +3,10 @@ import java.util.Scanner;
 
 public class PlayerThree extends Player {
 
-	Scanner scan = new Scanner(System.in);
-	int userInput = scan.nextInt();
+//	Scanner scan = new Scanner(System.in);
+//	int userInput = scan.nextInt();
+	
+	
 
 	@Override
 	public Roshambo generateRoshambo() {
@@ -23,6 +25,15 @@ public class PlayerThree extends Player {
 		}
 
 		return roshambo;
+	}
+
+	public PlayerThree() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public PlayerThree(String name) {
+		super(name);
 	}
 }
 

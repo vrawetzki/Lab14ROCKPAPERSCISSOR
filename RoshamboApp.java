@@ -5,42 +5,53 @@ public class RoshamboApp {
 
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
-		String userInput = scan.nextLine();
-		PlayerRandom p = new PlayerRandom();
-		p.generateRoshambo();
-		char opp;
-		int uW = 0;
-		int oW = 0;
+
+//		String userInput = scan.nextLine();
+//		PlayerRandom p = new PlayerRandom();
+//		p.generateRoshambo();
+
+		// initializing userHand and opponentWin to keep track
+		int userHand = 0;
+		int oppHand = 0;
 
 		System.out.println("Welcome to ROCK PAPER SCISSOR!");
 		System.out.println("------------------------------");
 
-		String name = Validator.getLine(scan, "Enter Your Name: ");
-		Player user = new Player(name);
+		// getting user's name
+		String name = Validator.getString(scan, "Enter Your Name: ");
+		Player user = new PlayerThree(name);
+		user.generateRoshambo();
+		// creating an opponent variable, conditional variable
 		Player opponent = null;
+		// see if user entered proper shark or jet
+		boolean isValid = false;
+		// see if user wants to play again
+		boolean userContinue = true;
 
-		while (true) {
-			System.out.println("Would you like to play against TheJets or TheSharks? (j/s)");
-			opp = scan.next().charAt(0);
-			char s;
-			char j;
-			if (opp == j) {
-				opponent = new PlayerRock();
-				break;
-			} else if (opp == s) {
-				opponent = new PlayerRandom();
-				break;
-			} else {
-				continue;
+		while (userContinue) {
+			while (isValid == false) {
+				System.out.println("Would you like to play against TheJets or TheSharks? (j/s)");
+				String opp = scan.nextLine();
+//			char s;
+//			char j;
+				// initializes PlayerRock
+				if (opp.equalsIgnoreCase("j")) {
+					opponent = new PlayerRock("Dwayne \"The Rock\" Johnson");
+					isValid = true;
+
+					// initializes PlayerRandom
+				} else if (opp.equalsIgnoreCase("s")) {
+					opponent = new PlayerRandom();
+					isValid = true;
+				} else {
+					System.out.println("Not valid input!");
+				}
 			}
-		}
 
-		System.out.println("Playing against" + opponent.getName());
-		System.out.println();
+			System.out.println("Playing against " + opponent.getName());
+			System.out.println();
 
-		while (true) {
-
-			String choice = Validator.getString(scan, "Rock, Paper, Scissor? (1/2/3");
+			String choice = Validator.getString(scan, "Rock, Paper, Scissor? (1/2/3) ");
 			choice = choice.substring(0, 1);
 			user.setHand(choice);
 
@@ -48,28 +59,39 @@ public class RoshamboApp {
 			Roshambo uHand = user.generateRoshambo();
 			Roshambo oHand = opponent.generateRoshambo();
 
-			int uH;
 			if (uHand == oHand) {
 				System.out.println("Draw!");
 			} else if (uHand == Roshambo.ROCK && oHand == Roshambo.PAPER) {
 				System.out.println(opponent.getName() + " wins!");
-				oW += 1;
+				oppHand += 1;
 			} else if (uHand == Roshambo.ROCK && oHand == Roshambo.SCISSOR) {
 				System.out.println("You Win!");
-				uH += 1;
+				userHand += 1;
 			} else if (uHand == Roshambo.PAPER && oHand == Roshambo.ROCK) {
 				System.out.println(opponent.getName() + " wins!");
-				oW += 1;
+				oppHand += 1;
 			} else if (uHand == Roshambo.PAPER && oHand == Roshambo.SCISSOR) {
 				System.out.println("You Win!");
-				uH += 1;
+				userHand += 1;
 			} else if (uHand == Roshambo.SCISSOR && oHand == Roshambo.PAPER) {
 				System.out.println(opponent.getName() + " wins!");
-				oW += 1;
+				oppHand += 1;
 			} else if (uHand == Roshambo.SCISSOR && oHand == Roshambo.ROCK) {
 				System.out.println("You Win!");
-				uH += 1;
+				userHand += 1;
+			}
+			
+			System.out.println("again");
+			// TODO: change logic
+			if (userContinue) {
+				userContinue = true;
+			} else {
+				userContinue = false;
 			}
 		}
+
 	}
-}
+	
+}// could just generate roshambos and tehn compare them immediately instead of my
+	// else if
+

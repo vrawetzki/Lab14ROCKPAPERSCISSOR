@@ -9,10 +9,10 @@ public enum Roshambo {
 			return "You picked Rock!";
 		case PAPER:
 			return "You picked Paper!";
-		case SCISSOR:
+		default:
 			return "You picked Scissor!";
 		}
-		return "";
+		
 	}
 
 }

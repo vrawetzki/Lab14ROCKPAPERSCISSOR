@@ -2,6 +2,16 @@ import java.util.Random;
 
 public class PlayerRandom extends Player {
 
+	public PlayerRandom() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public PlayerRandom(String name) {
+		super(name);
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public Roshambo generateRoshambo() {
 

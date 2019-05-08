@@ -8,8 +8,8 @@ import java.util.Scanner;
 public class Validator {
 	public static String getString(Scanner sc, String prompt) { // two prompts
 		System.out.print(prompt); // printing out the prompt
-		String s = sc.next(); // calling the next method, read user entry
-		sc.nextLine(); // discard any other data entered on the line, only return the first word, if you need teh whole sentence dont use this
+		String s = sc.nextLine(); // calling the next method, read user entry
+		//sc.nextLine(); // discard any other data entered on the line, only return the first word, if you need teh whole sentence dont use this
 		return s;
 	}
 
